@@ -20,7 +20,10 @@ class Users {
   }
 
   create(user) {
-    const newUser = { id: uuid(), ...user };
+    const newUser = {
+      id: uuid(),
+      ...user,
+    };
 
     this.users.push(newUser);
 
@@ -34,7 +37,7 @@ class Users {
       throw new Error(`User with id ${id} not found`);
     }
 
-    this.users = this.users.filter(user => user.id !== id);
+    this.users = this.users.filter(u => u.id !== id);
 
     return user;
   }

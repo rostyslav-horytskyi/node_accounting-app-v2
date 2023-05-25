@@ -13,7 +13,15 @@ class Expenses {
   }
 
   getAll({ userId, categories, from, to }) {
-    return filterExpenses(this.expenses, { userId, categories, from, to });
+    return filterExpenses(
+      this.expenses,
+      {
+        userId,
+        categories,
+        from,
+        to,
+      }
+    );
   }
 
   getById(id) {
@@ -21,7 +29,10 @@ class Expenses {
   }
 
   create(expense) {
-    const newExpense = { id: uuid(), ...expense };
+    const newExpense = {
+      id: uuid(),
+      ...expense,
+    };
 
     this.expenses.push(newExpense);
 
@@ -35,7 +46,7 @@ class Expenses {
       throw new Error(`Expense with id ${id} not found`);
     }
 
-    this.expenses = this.expenses.filter(expense => expense.id !== id);
+    this.expenses = this.expenses.filter(exp => exp.id !== id);
 
     return expense;
   }
